@@ -223,6 +223,8 @@ h6,
   line-height: 1.25;
 }
 
+
+
 h1 a,
 h2 a,
 h3 a,
@@ -516,6 +518,8 @@ ol ul {
   margin-bottom: 20px;
   color: #fff;
 }
+
+
 
 @media only screen and (max-width: 1199px) {
   h1 {
@@ -10995,6 +10999,7 @@ body.index-nine {
 }
 body.index-nine .main-title-area-center {
   text-align: center;
+  top:60px;
 }
 body.index-nine .main-title-area-center span.pre {
   color: var(--color-primary);
@@ -20531,7 +20536,7 @@ p.desc {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 200px 0 150px 0;
+  padding: 150px 0 150px 0;
   overflow: hidden;
 }
 .rts-breadcrumb-area .breadcrumb-inner .banner-shape-area {
@@ -20594,6 +20599,7 @@ p.desc {
   line-height: 200px;
   font-weight: 400;
   margin: 100px 0px -215px 0px;
+  margin-bottom:20px;
 }
 @media (max-width: 1200px) {
   .rts-breadcrumb-area .breadcrumb-inner .main-title {

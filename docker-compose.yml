@@ -25,8 +25,10 @@ services:
 
   mysql:
     image: mysql:8.4
+    ports:
+      - "3308:3306"
     environment:
-      MYSQL_DATABASE: traducaidiomas
+      MYSQL_DATABASE: restaurante
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: user

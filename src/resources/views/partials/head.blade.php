@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="asset/images/fav.svg">
-    <title>Seafood Home - Dinenos – Fast Food & Restaurant HTML Template</title>
+    <title>Restaurante Davilla - Tradição e Qualidade: O Melhor do Bairro</title>
 
     <!-- fontawesome css -->
     <link rel="stylesheet" href="{{asset('restaurante/css/plugins/fontawesome-5.css')}}">

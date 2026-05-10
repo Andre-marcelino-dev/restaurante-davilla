@@ -8,21 +8,30 @@
                     Mostrando {{ $itens->count() }} resultados
                 </p>
 
-                <select class="from-control">
-                    <option>Ordenação padrão</option>
-                    <option>Mais populares</option>
-                    <option>Melhor avaliados</option>
-                    <option>Mais recentes</option>
-                    <option>Menor preço</option>
-                    <option>Maior preço</option>
-                </select>
+                <form method="GET" action="{{ route('cardapio') }}">
+
+                    <select name="categoria" class="from-control" onchange="this.form.submit()">
+
+                        <option value="">Todas Categorias</option>
+
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id_categoria }}"
+                                {{ request('categoria') == $categoria->id_categoria ? 'selected' : '' }}>
+
+                                {{ $categoria->nome_categoria }}
+
+                            </option>
+                        @endforeach
+
+                    </select>
+
+                </form>
             </div>
 
             <div class="menu-item">
                 <div class="row">
 
                     @foreach ($itens as $item)
-
                         <div class="col-lg-4">
                             <div class="portfolio-wrapper2 mb-30">
 
@@ -51,8 +60,7 @@
                                             {{ $item->descricao }}
                                         </p>
 
-                                        <a href="#"
-                                            class="rts-btn btn-primary add-to-cart-btn">
+                                        <a href="#" class="rts-btn btn-primary add-to-cart-btn">
                                             VER PRODUTO
                                         </a>
 
@@ -61,7 +69,6 @@
 
                             </div>
                         </div>
-
                     @endforeach
 
                 </div>

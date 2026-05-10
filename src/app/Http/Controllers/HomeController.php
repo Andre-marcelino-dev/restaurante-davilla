@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Horario;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        // Busca produtos do cardápio
+        // Busca produtos
         $itens = Produto::all();
 
-        // Envia para a home
-        return view('site.home.home', compact('itens'));
+        // Busca horários
+        $horarios = Horario::all();
+
+        // Envia para view
+        return view('site.home.home', compact('itens', 'horarios'));
     }
 }

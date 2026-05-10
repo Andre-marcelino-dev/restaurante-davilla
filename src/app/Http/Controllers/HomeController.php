@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Produto;
 
 class HomeController extends Controller
 {
-        public function home()
+    public function home()
     {
-        return view('site.home.home');
+        // Busca produtos do cardápio
+        $itens = Produto::all();
+
+        // Envia para a home
+        return view('site.home.home', compact('itens'));
     }
 }

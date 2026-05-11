@@ -6,9 +6,9 @@
                     <img src="{{asset('restaurante/images/about/title-shape.png')}}" alt="about">
                 </div>
                 <h1 class="title-banner" data-sal="slide-up" data-sal-delay="170" data-sal-duration="800">
-                    Why People Choose Us?
+                   Por que as pessoas nos escolhem?
                 </h1>
-                <p class="desc" data-sal="slide-up" data-sal-duration="800">It’s the story of an everlasting love affair, Dieter Delicioz and the <br> Atlantic Ocean in the big air.</p>
+                <p class="desc" data-sal="slide-up" data-sal-duration="800">Uma verdadeira celebração de sabores, inspirada pela imensidão e elegância do Oceano Atlântico.</p>
             </div>
             <div class="service-area-inner pt--100" data-sal="slide-up" data-sal-delay="1200" data-sal-duration="800">
                 <div class="row">

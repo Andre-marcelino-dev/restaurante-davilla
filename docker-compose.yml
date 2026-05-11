@@ -29,9 +29,10 @@ services:
       - "3308:3306"
     environment:
       MYSQL_DATABASE: restaurante
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
+  
     volumes:
       - mysql_data:/var/lib/mysql
     networks:

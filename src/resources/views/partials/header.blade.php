@@ -20,7 +20,7 @@
                                            <a class="nav-link" href="{{ route('cardapio') }}">CARDAPIO</a>
                                        </li>
                                        <li>
-                                           <a class="nav-link" href="blog.html">BLOG</a>
+                                           <a class="nav-link" href="#">Contato</a>
                                        </li>
                                    </ul>
                                </nav>

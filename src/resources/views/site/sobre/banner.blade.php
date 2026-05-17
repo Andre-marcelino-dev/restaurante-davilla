@@ -10,8 +10,8 @@
                             <span class="shape"></span>
                             <span class="shape"></span>
                         </div>
-                        <h2 class="heading-title" data-sal="slide-up" data-sal-delay="120" data-sal-duration="800">Since From 2000</h2>
-                        <h1 class="main-title" data-sal="slide-up" data-sal-delay="120" data-sal-duration="800">About Us</h1>
+                        <h2 class="heading-title" data-sal="slide-up" data-sal-delay="120" data-sal-duration="800">Estamos no Mercado desde 2000</h2>
+                        <h1 class="main-title" data-sal="slide-up" data-sal-delay="120" data-sal-duration="800">RESTAURANTE DAVILLA</h1>
                     </div>
                     <!-- bread crumb inner wrapper end -->
                 </div>

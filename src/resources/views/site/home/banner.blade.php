@@ -28,7 +28,7 @@
                                     <div class="button-area-banner">
                                         <a href="about.html" class="rts-btn btn-primary">Ver mais</a>
                                         <a href="{{ route('cardapio') }}" class="rts-btn btn-seconday">
-                                                Cardapio de Comida
+                                            Cardapio de Comida
                                         </a>
                                     </div>
                                 </div>
@@ -60,9 +60,9 @@
                                         direto para a sua mesa
                                     </h1>
                                     <div class="button-area-banner">
-                                        <a href="about.html" class="rts-btn btn-primary">View More</a>
+                                        <a href="about.html" class="rts-btn btn-primary">Mais opções</a>
                                         <a href="{{ route('cardapio') }}" class="rts-btn btn-seconday">
-                                                Cardapio de Comida
+                                            Cardapio de Comida
                                         </a>
                                     </div>
                                 </div>
@@ -89,14 +89,12 @@
                                     </div>
                                     <h1 class="title-banner">
                                         Deliciosos frutos do mar com
-                                        <br>
-
-                                        Comer Maravilhoso
+                                        um toque de sofisticação
                                     </h1>
                                     <div class="button-area-banner">
                                         <a href="about.html" class="rts-btn btn-primary">Ver mais</a>
                                         <a href="{{ route('cardapio') }}" class="rts-btn btn-seconday">
-                                           Cardapio de Comida
+                                            Cardapio de Comida
                                         </a>
                                     </div>
                                 </div>

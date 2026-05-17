@@ -2,7 +2,7 @@
 
 @section('content')
 
-  
+
     @include('site.home.menu')
     @include('site.home.banner')
     @include('site.home.about')

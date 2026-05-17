@@ -7,6 +7,6 @@
   @include('site.sobre.brandarea')
   @include('site.sobre.service')
   @include('site.sobre.ctaarea')
-  @include('site.sobre.blog')
+
 
 @endsection

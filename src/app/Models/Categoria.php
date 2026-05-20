@@ -14,12 +14,15 @@ class Categoria extends Model
 
     protected $fillable = [
         'nome_categoria',
+        'descricao',
+        'status_categoria',
+     
     ];
 
     // Relacionamento:
     // Uma categoria possui vários produtos
-    public function produtos()
+    public function itens()
     {
-        return $this->hasMany(Produto::class, 'id_categoria', 'id_categoria');
+        return $this->hasMany(Produto::class, 'id_categoria');
     }
 }

@@ -28,11 +28,19 @@ services:
     ports:
       - "3308:3306"
     environment:
+<<<<<<< Updated upstream
       MYSQL_DATABASE: restaurante
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: root
      
      
+=======
+      MYSQL_DATABASE: restaurante_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
+  
+>>>>>>> Stashed changes
     volumes:
       - mysql_data:/var/lib/mysql
     networks:

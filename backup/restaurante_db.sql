@@ -1,4 +1,4 @@
-CREATE DATABASE restaurante_db;
+
 
 USE restaurante_db;
 
@@ -205,4 +205,4 @@ CREATE DATABASE restaurante_db;
 
 use restaurante_db;
 
-select * from itens_cardapio;
+

@@ -10,7 +10,7 @@ services:
       - php
     networks:
       - laravel
-
+ 
   php:
     build:
       context: .
@@ -22,30 +22,21 @@ services:
       - mysql
     networks:
       - laravel
-
+ 
   mysql:
     image: mysql:8.4
     ports:
       - "3308:3306"
     environment:
-<<<<<<< Updated upstream
-      MYSQL_DATABASE: restaurante
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: root
-     
-     
-=======
       MYSQL_DATABASE: restaurante_db
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user
       MYSQL_PASSWORD: user
-      MYSQL_ROOT_PASSWORD: root
-  
->>>>>>> Stashed changes
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - laravel
-
+ 
   composer:
     build:
       context: .
@@ -56,7 +47,7 @@ services:
     entrypoint: ["composer"]
     networks:
       - laravel
-
+ 
   node:
     image: node:22-alpine
     volumes:
@@ -68,10 +59,11 @@ services:
     command: "npm install && npm run dev -- --host"
     networks:
       - laravel
-
+ 
 volumes:
   mysql_data:
-
+ 
 networks:
   laravel:
     driver: bridge
+ 

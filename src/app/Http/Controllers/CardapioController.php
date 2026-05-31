@@ -34,4 +34,5 @@ class CardapioController extends Controller
             'horarios'
         ));
     }
+
 }

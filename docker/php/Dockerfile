@@ -28,13 +28,15 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \ 
     && rm -rf /var/lib/apt/lists/* 
  
-RUN curl -sS https://getcomposer.org/installer | php -- \ 
-    --install-dir=/usr/local/bin \ 
-    --filename=composer 
- 
-WORKDIR /var/www/html 
- 
-CMD ["php-fpm"] 
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin \
+    --filename=composer
+
+COPY docker/php/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+WORKDIR /var/www/html
+
+CMD ["php-fpm"]
  
 # Instala extensões PHP necessárias para o Laravel 
 RUN docker-php-ext-install \ 

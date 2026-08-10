@@ -1,10 +1,10 @@
 @extends('layout.admin')
 
-@section('title', 'Categoria | Confeitaria Dashboard')
+@section('title', 'Funcionários | Confeitaria Dashboard')
 
-@section('pg-titulo', 'Categoria')
+@section('pg-titulo', 'Funcionários')
 
-@section('link-topo', 'Categoria')
+@section('link-topo', 'Funcionários')
 
 @section('content')
 
@@ -23,17 +23,22 @@
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <strong>Atenção!</strong> verifique os campos do formulário.
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $erro)
+                                <li>{{ $erro }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Gerenciamento de Categorias</h3>
+                        <h3 class="card-title">Gerenciamento de Funcionários</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
-                                data-bs-target="#modalNovaCategoria">
+                                data-bs-target="#modalNovoFuncionario">
                                 <i class="bi bi-plus-circle"></i>
-                                Nova Categoria
+                                Novo Funcionário
                             </button>
                         </div>
                     </div>
@@ -42,25 +47,28 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 60px"></th>
-                                    <th>Nome da Categoria</th>
-                                    <th>Descrição</th>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Telefone</th>
+                                    <th>Data de Contratação</th>
                                     <th>Status</th>
                                     <th style="width: 200px">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @forelse($categorias as $linha)
+                                @forelse($funcionarios as $linha)
                                     <tr class="align-middle">
-                                        <td></td>
+                                        <td>{{ $linha->nome }}</td>
 
-                                        <td>{{ $linha->nome_categoria }}</td>
+                                        <td>{{ $linha->cargo }}</td>
 
-                                        <td>{{ $linha->descricao }}</td>
+                                        <td>{{ $linha->telefone }}</td>
+
+                                        <td>{{ \Illuminate\Support\Carbon::parse($linha->data_contratacao)->format('d/m/Y') }}</td>
 
                                         <td>
-                                            @if ($linha->status_categoria === 'ATIVO')
+                                            @if ($linha->status === 'ATIVO')
                                                 <span class="badge text-bg-success">Ativo</span>
                                             @else
                                                 <span class="badge text-bg-danger">Inativo</span>
@@ -68,13 +76,13 @@
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                data-bs-target="#modalEditarCategoria{{ $linha->id_categoria }}">
+                                                data-bs-target="#modalEditarFuncionario{{ $linha->id_funcionario }}">
                                                 <i class="bi bi-pencil"></i>
                                             </button>
 
-                                            @if ($linha->status_categoria === 'ATIVO')
+                                            @if ($linha->status === 'ATIVO')
                                                 <form
-                                                    action="{{ route('admin.categorias.desativar', $linha->id_categoria) }}"
+                                                    action="{{ route('admin.funcionarios.desativar', $linha->id_funcionario) }}"
                                                     method="post" style="display: inline;">
                                                     @csrf
                                                     @method('PATCH')
@@ -83,7 +91,7 @@
                                                     </button>
                                                 </form>
                                             @else
-                                                <form action="{{ route('admin.categorias.ativar', $linha->id_categoria) }}"
+                                                <form action="{{ route('admin.funcionarios.ativar', $linha->id_funcionario) }}"
                                                     method="post" style="display: inline;">
                                                     @csrf
                                                     @method('PATCH')
@@ -94,10 +102,10 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @include('admin.categoria.modal.editar')
+                                    @include('admin.funcionario.modal.editar', ['linha' => $linha])
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center text-muted">Nenhuma categoria cadastrada.</td>
+                                        <td colspan="6" class="text-center text-muted">Nenhum funcionário cadastrado.</td>
                                     </tr>
                                 @endforelse
 
@@ -112,7 +120,6 @@
         </div>
     </div>
 
-
-    @include('admin.categoria.modal.criar')
+    @include('admin.funcionario.modal.criar')
 
 @endsection

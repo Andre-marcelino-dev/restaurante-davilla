@@ -61,7 +61,7 @@
 
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.produtos') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Produtos</p>
                             </a>
@@ -185,9 +185,9 @@
                     <ul class="nav nav-treeview">
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.funcionarios') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Usuários</p>
+                                <p>Funcionários</p>
                             </a>
                         </li>
 

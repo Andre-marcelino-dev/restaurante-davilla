@@ -32,6 +32,25 @@ class CategoriaController extends Controller
             ->with('success', 'Categoria cadastrada com sucesso!');
     }
 
+    public function update(Request $request, $id)
+    {
+        $categoria = Categoria::findOrFail($id);
+
+        $request->validate([
+            'nome_categoria' => 'required|string|max:50',
+            'descricao'      => 'nullable|string|max:200',
+        ]);
+
+        $categoria->update([
+            'nome_categoria' => $request->nome_categoria,
+            'descricao'      => $request->descricao,
+        ]);
+
+        return redirect()
+            ->route('admin.categorias')
+            ->with('success', 'Categoria atualizada com sucesso!');
+    }
+
     // 🔴 ADICIONADO: Função para desativar (Resolve o erro do seu print!)
     public function desativar($id)
     {

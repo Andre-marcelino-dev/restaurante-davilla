@@ -60,8 +60,8 @@
                                 @forelse($produtos as $linha)
                                     <tr class="align-middle">
                                         <td>
-                                            @if ($linha->foto)
-                                                <img src="{{ asset('restaurante/images/cardapio/' . $linha->foto) }}"
+                                            @if ($linha->foto_cardapio)
+                                                <img src="{{ asset('restaurante/images/cardapio/' . $linha->foto_cardapio) }}"
                                                     alt="{{ $linha->nome_item }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                                             @else
                                                 <span class="text-muted">—</span>

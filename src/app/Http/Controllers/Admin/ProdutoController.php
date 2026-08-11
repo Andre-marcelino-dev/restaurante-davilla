@@ -23,8 +23,8 @@ class ProdutoController extends Controller
     {
         $data = $this->validarProduto($request);
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $this->salvarFoto($request);
+        if ($request->hasFile('foto_cardapio')) {
+            $data['foto_cardapio'] = $this->salvarFoto($request);
         }
 
         $data['disponivel'] = $request->boolean('disponivel');
@@ -42,9 +42,9 @@ class ProdutoController extends Controller
 
         $data = $this->validarProduto($request);
 
-        if ($request->hasFile('foto')) {
-            $this->removerFoto($produto->foto);
-            $data['foto'] = $this->salvarFoto($request);
+        if ($request->hasFile('foto_cardapio')) {
+            $this->removerFoto($produto->foto_cardapio);
+            $data['foto_cardapio'] = $this->salvarFoto($request);
         }
 
         $data['disponivel'] = $request->boolean('disponivel');
@@ -63,13 +63,13 @@ class ProdutoController extends Controller
             'descricao'    => 'nullable|string',
             'preco'        => 'required|numeric|min:0',
             'id_categoria' => 'required|exists:categorias_cardapio,id_categoria',
-            'foto'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480',
+            'foto_cardapio' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480',
         ]);
     }
 
     private function salvarFoto(Request $request): string
     {
-        $arquivo = $request->file('foto');
+        $arquivo = $request->file('foto_cardapio');
         $nomeArquivo = uniqid('produto_') . '.' . $arquivo->extension();
 
         $arquivo->move(public_path(self::FOTO_DIR), $nomeArquivo);

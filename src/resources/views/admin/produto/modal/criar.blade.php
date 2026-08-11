@@ -43,8 +43,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="foto" class="form-label">Foto do Produto</label>
-                            <input type="file" class="form-control" id="foto" name="foto" accept="image/png,image/jpeg,image/webp">
+                            <label for="foto_cardapio" class="form-label">Foto do Produto</label>
+                            <input type="file" class="form-control" id="foto_cardapio" name="foto_cardapio" accept="image/png,image/jpeg,image/webp">
                             <div class="form-text">Formatos aceitos: JPG, PNG ou WEBP (máx. 20MB).</div>
                         </div>
 

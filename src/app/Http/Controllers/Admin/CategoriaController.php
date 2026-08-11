@@ -52,26 +52,37 @@ class CategoriaController extends Controller
     }
 
     // 🔴 ADICIONADO: Função para desativar (Resolve o erro do seu print!)
-    public function desativar($id)
-    {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->status_categoria = 'INATIVO';
-        $categoria->save();
+public function toggle($id)
+{
+    $categoria = Categoria::findOrFail($id);
+    $categoria->status_categoria = $categoria->status_categoria === 'ATIVO' ? 'INATIVO' : 'ATIVO';
+    $categoria->save();
 
-        return redirect()
-            ->route('admin.categorias')
-            ->with('success', 'Categoria desativada com sucesso!');
-    }
+    return redirect()
+        ->route('admin.categorias')
+        ->with('success', 'Status atualizado com sucesso!');
+}
 
-    // 🔴 ADICIONADO: Função para ativar
-    public function ativar($id)
-    {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->status_categoria = 'ATIVO';
-        $categoria->save();
+public function desativar($id)
+{
+    $categoria = Categoria::findOrFail($id);
+    $categoria->status_categoria = 'INATIVO';
+    $categoria->save();
 
-        return redirect()
-            ->route('admin.categorias')
-            ->with('success', 'Categoria ativada com sucesso!');
-    }
+    return redirect()
+        ->route('admin.categorias')
+        ->with('success', 'Categoria desativada com sucesso!');
+}
+
+public function ativar($id)
+{
+    $categoria = Categoria::findOrFail($id);
+    $categoria->status_categoria = 'ATIVO';
+    $categoria->save();
+
+    return redirect()
+        ->route('admin.categorias')
+        ->with('success', 'Categoria ativada com sucesso!');
+}
+
 }

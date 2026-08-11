@@ -37,9 +37,8 @@
 
                                 <a href="#" class="image">
 
-                                    <img class="img-fluid"
-                                        src="{{ asset('restaurante/images/cardapio/' . $item->foto) }}"
-                                        alt="{{ $item->nome_item }}">
+                                   <img src="{{ asset('restaurante/images/cardapio/' . $item->foto_cardapio) }}"
+     alt="{{ $item->nome_item }}">
 
                                 </a>
 

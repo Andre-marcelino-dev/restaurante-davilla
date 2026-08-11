@@ -13,9 +13,9 @@
 
                     <div class="card-body">
 
-                        @if ($linha->foto)
+                        @if ($linha->foto_cardapio)
                             <div class="mb-3">
-                                <img src="{{ asset('restaurante/images/cardapio/' . $linha->foto) }}" alt="{{ $linha->nome_item }}"
+                                <img src="{{ asset('restaurante/images/cardapio/' . $linha->foto_cardapio) }}" alt="{{ $linha->nome_item }}"
                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px;">
                             </div>
                         @endif
@@ -52,8 +52,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="foto{{ $linha->id_item }}" class="form-label">Trocar Foto do Produto</label>
-                            <input type="file" class="form-control" id="foto{{ $linha->id_item }}" name="foto" accept="image/png,image/jpeg,image/webp">
+                            <label for="foto_cardapio{{ $linha->id_item }}" class="form-label">Trocar Foto do Produto</label>
+                            <input type="file" class="form-control" id="foto_cardapio{{ $linha->id_item }}" name="foto_cardapio" accept="image/png,image/jpeg,image/webp">
                             <div class="form-text">Deixe em branco para manter a foto atual.</div>
                         </div>
 

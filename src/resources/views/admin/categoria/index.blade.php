@@ -1,6 +1,6 @@
 @extends('layout.admin')
 
-@section('title', 'Categoria | Confeitaria Dashboard')
+@section('title', 'Categoria | Restaurante Davilla')
 
 @section('pg-titulo', 'Categoria')
 
@@ -60,11 +60,15 @@
                                         <td>{{ $linha->descricao }}</td>
 
                                         <td>
-                                            @if ($linha->status_categoria === 'ATIVO')
-                                                <span class="badge text-bg-success">Ativo</span>
-                                            @else
-                                                <span class="badge text-bg-danger">Inativo</span>
-                                            @endif
+                                            <form action="{{ route('admin.categorias.toggle', $linha->id_categoria) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="badge border-0
+                                                    {{ $linha->status_categoria === 'ATIVO' ? 'text-bg-success' : 'text-bg-danger' }}">
+                                                    {{ $linha->status_categoria === 'ATIVO' ? 'Ativo' : 'Inativo' }}
+                                                </button>
+                                            </form>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -114,5 +118,6 @@
 
 
     @include('admin.categoria.modal.criar')
+    @include('admin.categoria.modal.editar')
 
 @endsection

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\FuncionarioController;
+use App\Http\Controllers\Admin\ConteudoSiteController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
     Route::patch('/funcionarios/{id}/desativar', [FuncionarioController::class, 'desativar'])->name('funcionarios.desativar');
     Route::patch('/funcionarios/{id}/ativar', [FuncionarioController::class, 'ativar'])->name('funcionarios.ativar');
+
+    Route::prefix('conteudo')->name('conteudo.')->group(function () {
+        Route::get('/banner', [ConteudoSiteController::class, 'bannerEdit'])->name('banner');
+        Route::put('/banner', [ConteudoSiteController::class, 'bannerUpdate'])->name('banner.update');
+    });
 
 });

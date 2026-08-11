@@ -41,6 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('conteudo')->name('conteudo.')->group(function () {
         Route::get('/banner', [ConteudoSiteController::class, 'bannerEdit'])->name('banner');
         Route::put('/banner', [ConteudoSiteController::class, 'bannerUpdate'])->name('banner.update');
+
+        Route::get('/blog', [ConteudoSiteController::class, 'blogEdit'])->name('blog');
+        Route::put('/blog', [ConteudoSiteController::class, 'blogUpdate'])->name('blog.update');
     });
 
 });

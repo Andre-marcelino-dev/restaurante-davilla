@@ -22,7 +22,10 @@ class HomeController extends Controller
         // Busca os textos/imagens do blog cadastrados no admin
         $blogConteudo = ConteudoSite::agruparPorSecao('home', 'blog_');
 
+        // Busca os textos/imagens da seção Sobre cadastrados no admin
+        $sobreConteudo = ConteudoSite::agruparPorSecao('home', 'sobre_home')->get('sobre_home', collect());
+
         // Envia para view
-        return view('site.home.home', compact('itens', 'horarios', 'bannerSlides', 'blogConteudo'));
+        return view('site.home.home', compact('itens', 'horarios', 'bannerSlides', 'blogConteudo', 'sobreConteudo'));
     }
 }

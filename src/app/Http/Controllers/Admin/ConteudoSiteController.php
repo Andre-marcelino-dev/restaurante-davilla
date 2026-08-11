@@ -14,6 +14,8 @@ class ConteudoSiteController extends Controller
     private const BLOG_DIR = 'restaurante/images/blog';
     private const TOTAL_POSTS = 4;
 
+    private const SOBRE_DIR = 'restaurante/images/about';
+
     public function bannerEdit()
     {
         $porSecao = ConteudoSite::agruparPorSecao('home', 'banner_slide_');
@@ -136,13 +138,60 @@ class ConteudoSiteController extends Controller
             ->with('success', 'Blog atualizado com sucesso!');
     }
 
-    private function salvarImagemSecao(Request $request, string $campoArquivo, string $secao, string $diretorio, string $prefixoArquivo): void
+    public function sobreEdit()
+    {
+        $doSobre = ConteudoSite::agruparPorSecao('home', 'sobre_home')->get('sobre_home', collect());
+
+        $sobre = [
+            'imagem_1'         => $doSobre->get('imagem_1'),
+            'imagem_2'         => $doSobre->get('imagem_2'),
+            'titulo'           => $doSobre->get('titulo'),
+            'descricao'        => $doSobre->get('descricao'),
+            'contador_numero'  => $doSobre->get('contador_numero'),
+            'contador_texto'   => $doSobre->get('contador_texto'),
+            'botao_texto'      => $doSobre->get('botao_texto'),
+        ];
+
+        return view('admin.conteudo.sobre', compact('sobre'));
+    }
+
+    public function sobreUpdate(Request $request)
+    {
+        $data = $request->validate([
+            'campos.titulo'           => 'required|string|max:150',
+            'campos.descricao'        => 'required|string|max:500',
+            'campos.contador_numero'  => 'required|string|max:10',
+            'campos.contador_texto'   => 'required|string|max:50',
+            'campos.botao_texto'      => 'required|string|max:50',
+            'imagem_1'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480',
+            'imagem_2'                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:20480',
+        ]);
+
+        foreach (['titulo', 'descricao', 'contador_numero', 'contador_texto', 'botao_texto'] as $chave) {
+            ConteudoSite::updateOrCreate(
+                ['pagina' => 'home', 'secao' => 'sobre_home', 'chave' => $chave],
+                ['tipo' => 'texto', 'valor' => $data['campos'][$chave]]
+            );
+        }
+
+        foreach (['imagem_1', 'imagem_2'] as $chaveImagem) {
+            if ($request->hasFile($chaveImagem)) {
+                $this->salvarImagemSecao($request, $chaveImagem, 'sobre_home', self::SOBRE_DIR, 'sobre_', $chaveImagem);
+            }
+        }
+
+        return redirect()
+            ->route('admin.conteudo.sobre')
+            ->with('success', 'Seção Sobre atualizada com sucesso!');
+    }
+
+    private function salvarImagemSecao(Request $request, string $campoArquivo, string $secao, string $diretorio, string $prefixoArquivo, string $chave = 'imagem'): void
     {
         $arquivo = $request->file($campoArquivo);
         $nomeArquivo = uniqid($prefixoArquivo) . '.' . $arquivo->extension();
         $arquivo->move(public_path($diretorio), $nomeArquivo);
 
-        $registro = ConteudoSite::firstOrNew(['pagina' => 'home', 'secao' => $secao, 'chave' => 'imagem']);
+        $registro = ConteudoSite::firstOrNew(['pagina' => 'home', 'secao' => $secao, 'chave' => $chave]);
 
         $this->removerImagemAntiga($registro->valor, $diretorio);
 

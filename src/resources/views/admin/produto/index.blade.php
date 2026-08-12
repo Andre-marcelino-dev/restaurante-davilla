@@ -20,6 +20,12 @@
                     </div>
                 @endif
 
+                @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <strong>Atenção!</strong> verifique os campos do formulário.
@@ -52,7 +58,7 @@
                                     <th>Categoria</th>
                                     <th>Preço</th>
                                     <th>Disponível</th>
-                                    <th style="width: 100px">Ações</th>
+                                    <th style="width: 160px">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,6 +93,36 @@
                                                 data-bs-target="#modalEditarProduto{{ $linha->id_item }}">
                                                 <i class="bi bi-pencil"></i>
                                             </button>
+
+                                            @if ($linha->disponivel)
+                                                <form action="{{ route('admin.produtos.desativar', $linha->id_item) }}"
+                                                    method="post" style="display: inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="btn btn-secondary" title="Desativar">
+                                                        <i class="bi bi-eye-slash"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('admin.produtos.ativar', $linha->id_item) }}"
+                                                    method="post" style="display: inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="btn btn-success" title="Ativar">
+                                                        <i class="bi bi-check-circle"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+
+                                            <form action="{{ route('admin.produtos.destroy', $linha->id_item) }}"
+                                                method="post" style="display: inline;"
+                                                onsubmit="return confirm('Excluir o produto &quot;{{ $linha->nome_item }}&quot;? Esta ação não pode ser desfeita.');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" title="Excluir">
+                                                    <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @include('admin.produto.modal.editar', ['linha' => $linha])

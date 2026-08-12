@@ -56,6 +56,47 @@ class ProdutoController extends Controller
             ->with('success', 'Produto atualizado com sucesso!');
     }
 
+    public function desativar($id)
+    {
+        $produto = Produto::findOrFail($id);
+        $produto->disponivel = false;
+        $produto->save();
+
+        return redirect()
+            ->route('admin.produtos')
+            ->with('success', 'Produto desativado com sucesso!');
+    }
+
+    public function ativar($id)
+    {
+        $produto = Produto::findOrFail($id);
+        $produto->disponivel = true;
+        $produto->save();
+
+        return redirect()
+            ->route('admin.produtos')
+            ->with('success', 'Produto ativado com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        $produto = Produto::findOrFail($id);
+
+        try {
+            $produto->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()
+                ->route('admin.produtos')
+                ->with('error', 'Não é possível excluir "' . $produto->nome_item . '" porque já existem pedidos com este produto. Desative-o em vez de excluir.');
+        }
+
+        $this->removerFoto($produto->foto_cardapio);
+
+        return redirect()
+            ->route('admin.produtos')
+            ->with('success', 'Produto excluído com sucesso!');
+    }
+
     private function validarProduto(Request $request): array
     {
         return $request->validate([

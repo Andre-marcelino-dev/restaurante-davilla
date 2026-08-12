@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\FuncionarioController;
 use App\Http\Controllers\Admin\ConteudoSiteController;
+use App\Http\Controllers\Admin\AuthController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ Route::get('/cardapio', [CardapioController::class, 'cardapio'])->name('cardapio
 Route::get('/sobre', [SobreController::class, 'sobre'])->name('sobre');
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('/', [DashController::class, 'index'])->name('dash');
 
